@@ -1,0 +1,16 @@
+.Building { 
+    &:after { content: ''; display: block; clear: both; }
+    .data { background: url('../../images/buttonLong_beige.png'); width: 190px; height: 45px; border-radius: 5px; float: left;
+        .name { width: 100%; text-align: center; font-size: 12px; text-transform: uppercase; text-shadow: 0px 0px 1px rgba(#FFF, .4); color: rgba(#000, .7); font-weight: 800; margin: 5px 0 0 0;
+            ul { display: inline-block; margin: 0; padding: 0; list-style-type: none;
+                li { display: inline-block; background: #FFF; margin-left: 5px; height: 15px; line-height: 15px; font-size: 12px; border-radius: 2px; padding-right: 3px; font-weight: normal;
+                    &.wood { background: #DE9959; }
+                    &.stone { background: #737373; color: rgba(#FFF, .7); }
+                    span { display: inline-block; font-size: 8px; width: 12px; height: 10px; text-align: center; line-height: 11px; border-right: 1px solid rgba(#FFF, .2); color: rgba(#000, .4); margin-right: 2px; }
+                }
+            }
+        }
+        .owned { width: 100%; text-align: center; font-size: 12px; text-transform: uppercase; text-shadow: 0px 0px 1px rgba(#FFF, .4); color: rgba(#000, .4); }
+    }
+    .build { background: url('../../images/buttonSquare_beige.png'); width: 45px; height: 45px; border-radius: 5px; text-align: center; line-height: 42px; font-weight: bolder; font-size: 36px; color: rgba(#000, .5); cursor: pointer; float: left; }
+}

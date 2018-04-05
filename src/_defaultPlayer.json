@@ -1,0 +1,58 @@
+{
+    "eff": 10,
+    "genAction": null,
+    "action": null,
+    "res": [
+      {
+        "key": "food",
+        "name": "Food",
+        "cur": 0,
+        "limit": 500,
+        "actionName": ["gather", "gathering"],
+        "persec": 0
+      },
+      {
+        "key": "wood",
+        "name": "Wood",
+        "cur": 0,
+        "limit": 500,
+        "actionName": ["chop", "chopping"],
+        "persec": 0
+      },
+      {
+        "key": "stone",
+        "name": "Stone",
+        "cur": 0,
+        "limit": 500,
+        "actionName": ["pick", "picking"],
+        "persec": 0
+      },
+      {
+        "key": "metal",
+        "name": "Metal",
+        "cur": 0,
+        "limit": 500,
+        "actionName": ["melt", "melting"],
+        "persec": 0
+      }
+    ],
+    "buildings": [
+      {
+        "key": "house",
+        "name": "House",
+        "owned": 0,
+        "housing": 5,
+        "cost": [
+          ["wood", 20],
+          ["stone", 5]
+        ],
+        "fx": [
+          {
+            "type": "housing",
+            "add": 5
+          }
+        ],
+        "burp": false
+      }
+    ]
+  }
