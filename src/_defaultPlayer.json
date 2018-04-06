@@ -1,5 +1,5 @@
 {
-    "eff": 10,
+    "eff": 64,
     "genAction": null,
     "action": null,
     "res": [
@@ -8,32 +8,74 @@
         "name": "Food",
         "cur": 0,
         "limit": 500,
+        "baseLimit": 500,
         "actionName": ["gather", "gathering"],
-        "persec": 0
+        "persec": 0,
+        "storageName": "Barn",
+        "storageCost": [
+          ["food", 350],
+          ["wood", 25]
+        ],
+        "storageCurCost": [
+          ["food", 350],
+          ["wood", 25]
+        ],
+        "storageLevel": 0
       },
       {
         "key": "wood",
         "name": "Wood",
         "cur": 0,
         "limit": 500,
+        "baseLimit": 500,
         "actionName": ["chop", "chopping"],
-        "persec": 0
+        "persec": 0,
+        "storageName": "Shed",
+        "storageCost": [
+          ["wood", 375]
+        ],
+        "storageCurCost": [
+          ["wood", 375]
+        ],
+        "storageLevel": 0
       },
       {
         "key": "stone",
         "name": "Stone",
         "cur": 0,
         "limit": 500,
+        "baseLimit": 500,
         "actionName": ["pick", "picking"],
-        "persec": 0
+        "persec": 0,
+        "storageName": "Pile",
+        "storageCost": [
+          ["stone", 350],
+          ["wood", 25]
+        ],
+        "storageCurCost": [
+          ["stone", 350],
+          ["wood", 25]
+        ],
+        "storageLevel": 0
       },
       {
         "key": "metal",
         "name": "Metal",
         "cur": 0,
         "limit": 500,
+        "baseLimit": 500,
         "actionName": ["melt", "melting"],
-        "persec": 0
+        "persec": 0,
+        "storageName": "Forge",
+        "storageCost": [
+          ["metal", 350],
+          ["wood", 25]
+        ],
+        "storageCurCost": [
+          ["metal", 350],
+          ["wood", 25]
+        ],
+        "storageLevel": 0
       }
     ],
     "buildings": [

@@ -16,6 +16,7 @@ class Resource extends Component {
 
     this.action = this.action.bind(this)
     this.changeAction = this.changeAction.bind(this)
+    this.buildStorage = this.buildStorage.bind(this)
     
 
   }
@@ -26,6 +27,11 @@ class Resource extends Component {
 
   changeAction(){
     this.action()(this.state.res.key)
+  }
+
+  buildStorage(){
+    console.log(this.props)
+    this.props.buildStorage(this.state.res)
   }
 
   componentWillReceiveProps(props){
@@ -49,17 +55,29 @@ class Resource extends Component {
 
     return (
         <div className='Resource'>
-          <div className='name'>{this.state.res.name}</div>
-          <div className={'progress' + this.progressClass}>
-            <div className={'fill' + this.progressClass} style={ { width: this.percent + '%' } }></div>
+          <div className="panel">
+            <div className='name'>{this.state.res.name}</div>
+            <div className={'progress' + this.progressClass}>
+              <div className={'fill' + this.progressClass} style={ { width: this.percent + '%' } }></div>
+            </div>
+            <div className='amount'>
+              <span className='current'>{Math.floor(this.state.res.cur)}</span>/<span className='max'>{this.state.res.limit}</span>
+            </div>
+            <div className='persec'>
+              {this.state.res.persec}/s
+            </div>
+            <div className={this.actionClass} onClick={this.changeAction}>{ !this.currently ? this.state.res.actionName[0] : this.state.res.actionName[1] }</div>
           </div>
-          <div className='amount'>
-            <span className='current'>{Math.floor(this.state.res.cur)}</span>/<span className='max'>{this.state.res.limit}</span>
+          <div className="storage" onClick={this.buildStorage}>
+            <div className="name">{this.state.res.storageName}</div>
+            <ul className="cost">
+              {this.state.res.storageCurCost.map((b, i) => {
+                return (
+                  <li key={i} className={b[0]}><span>{b[0].substr(0, 1)}</span>{b[1]}</li>
+                )
+              })}
+            </ul>
           </div>
-          <div className='persec'>
-            {this.state.res.persec}/s
-          </div>
-          <div className={this.actionClass} onClick={this.changeAction}>{ !this.currently ? this.state.res.actionName[0] : this.state.res.actionName[1] }</div>
         </div>
     );
   }

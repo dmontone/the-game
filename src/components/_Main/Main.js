@@ -9,6 +9,7 @@ class Main extends Component {
   constructor(props){
     super(props)
     this.state = this.props
+    console.log(this.props)
   }
 
   componentWillReceiveProps(props){
@@ -19,6 +20,7 @@ class Main extends Component {
     return (
         <div className="Main">
           <Resources
+            buildStorage={this.props.buildStorage}
             action={this.state.action} 
             changeAction={this.state.changeAction} 
             list={this.state.resources}

@@ -24,6 +24,7 @@ class App extends Component {
     this.Work = this.Work.bind(this)
 
     this.build = this.build.bind(this)
+    this.buildStorage = this.buildStorage.bind(this)
 
   }
 
@@ -46,10 +47,9 @@ class App extends Component {
     cost.forEach(el => {
       const resource = this.state.res.filter((res) => {
         if(res.key === el[0]) return true
+        return false
       })[0]
-
       console.log('checking', el[0], 'needs', el[1], 'have', resource.cur)
-
       if(resource.cur < el[1]) ret = false
     });
     return ret
@@ -60,8 +60,8 @@ class App extends Component {
     newRes.map((res)=>{
       if(res.key === type)
         res.cur -= amount
+      return res
     })
-    console.log(newRes)
   }
 
   clearCurAction(){
@@ -144,13 +144,14 @@ class App extends Component {
         const type = c[0],
               amount = c[1]
         this.deduce(type, amount)
-      });
+      })
       
       var newBld = this.state.buildings
       newBld.map(el => {
         if(el.key === key){
           el.owned++
         }
+        return el
       })
       this.setState({
         buildings: newBld
@@ -162,6 +163,47 @@ class App extends Component {
     
   }
 
+  buildStorage(res){
+    
+    const cost = res.storageCurCost
+
+    if(this.canAfford(cost)){
+      
+      cost.forEach(c => {
+        const type = c[0],
+              amount = c[1]
+        this.deduce(type, amount)
+      })
+
+      var newRes = this.state.res
+      newRes.map(el => {
+        if(el.key === res.key){
+          el.storageLevel++
+          el.storageCurCost = (() => {
+            var base = el.storageCost,
+                curc = []
+            base.forEach(cost => {
+              var type = cost[0],
+                  quant = cost[1]
+              quant = quant + (el.storageLevel * (quant * (25/100)))
+              curc.push([type, quant])
+            })
+            return curc
+          })()
+          el.limit = el.baseLimit + (el.storageLevel * (el.baseLimit * (50/100)))
+        }
+        return el
+      })
+      this.setState({
+        res: newRes
+      })
+
+    } else {
+      console.log('cannot')
+    }
+    
+  }
+
   render() {
     return (
       <div className="App">
@@ -169,9 +211,10 @@ class App extends Component {
         <Main
           changeAction={this.changeAction}
           action={this.state.action}
+          buildStorage={this.buildStorage}
           resources={this.state.res}
           build={this.build}
-          buildings={this.state.buildings}
+          buildings={this.state.buildings} 
         />
       </div>
     );

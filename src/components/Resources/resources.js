@@ -10,6 +10,7 @@ class Resources extends Component {
   constructor(props){
     super(props)
     this.state = this.props
+    console.log(this.props)
   }
 
   componentWillReceiveProps(props){ 
@@ -22,7 +23,7 @@ class Resources extends Component {
           <div className="title">Resources</div>
           {this.state.list.map((res, i) => {
             return (
-              <Resource action={this.state.action} changeAction={this.state.changeAction} key={i} res={res} />
+              <Resource buildStorage={this.props.buildStorage} action={this.state.action} changeAction={this.state.changeAction} key={i} res={res} />
             )
           })}
         </div>
