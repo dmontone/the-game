@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 
+import Num from '../__Num/num.js'
+
 import './style.scss'
 
 class Resource extends Component {
@@ -61,10 +63,10 @@ class Resource extends Component {
               <div className={'fill' + this.progressClass} style={ { width: this.percent + '%' } }></div>
             </div>
             <div className='amount'>
-              <span className='current'>{Math.floor(this.state.res.cur)}</span>/<span className='max'>{this.state.res.limit}</span>
+              <span className='current'><Num value={this.state.res.cur} /></span>/<span className='max'><Num value={this.state.res.limit} /></span>
             </div>
             <div className='persec'>
-              {this.state.res.persec}/s
+              <Num value={this.state.res.persec} />/s
             </div>
             <div className={this.actionClass} onClick={this.changeAction}>{ !this.currently ? this.state.res.actionName[0] : this.state.res.actionName[1] }</div>
           </div>
@@ -73,7 +75,7 @@ class Resource extends Component {
             <ul className="cost">
               {this.state.res.storageCurCost.map((b, i) => {
                 return (
-                  <li key={i} className={b[0]}><span>{b[0].substr(0, 1)}</span>{b[1]}</li>
+                  <li key={i} className={b[0]}><span className="label">{b[0].substr(0, 1)}</span><Num value={b[1]} /></li>
                 )
               })}
             </ul>

@@ -178,6 +178,7 @@ class App extends Component {
       var newRes = this.state.res
       newRes.map(el => {
         if(el.key === res.key){
+          console.log(el.storageLevel)
           el.storageLevel++
           el.storageCurCost = (() => {
             var base = el.storageCost,
@@ -185,12 +186,13 @@ class App extends Component {
             base.forEach(cost => {
               var type = cost[0],
                   quant = cost[1]
-              quant = quant + (el.storageLevel * (quant * (25/100)))
+              quant = quant * Math.pow(1.12, el.storageLevel)
               curc.push([type, quant])
             })
             return curc
           })()
-          el.limit = el.baseLimit + (el.storageLevel * (el.baseLimit * (50/100)))
+          // el.limit = el.baseLimit + (1 + el.storageLevel) * (el.limit * (25/100))
+          el.limit = el.baseLimit * Math.pow(1.12, el.storageLevel)
         }
         return el
       })
